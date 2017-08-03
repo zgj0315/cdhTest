@@ -17,15 +17,13 @@
 						<DefaultRolloverStrategy max="9" />
 					</RollingFile>
 				</Route>
-				<Route ref="STDOUT" key="Audit" />
-				<Route ref="List" key="Service" />
 			</Routes>
 		</Routing>
 	</Appenders>
 	<Loggers>
 		<!-- 全局配置 -->
 		<Root level="INFO">
-			<AppenderRef ref="Routing" />
+			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>
 </Configuration>

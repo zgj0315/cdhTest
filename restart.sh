@@ -27,9 +27,9 @@ do
 done
 #echo "classpath=$classpath"
 
-JVM_OPTS="-server -Xms32G -Xmx32G -Xloggc:$LOG/gc.log -XX:-PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSParallelRemarkEnabled -XX:+HeapDumpOnOutOfMemoryError"
+JVM_OPTS="-server -Xms4G -Xmx4G -Xloggc:$LOG/gc.log -XX:-PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSParallelRemarkEnabled -XX:+HeapDumpOnOutOfMemoryError"
 
-for i in `ps aux | grep dataServiceIDC | grep -server | awk '{print$2}'`
+for i in `ps aux | grep cdhTest | grep -server | awk '{print$2}'`
 do
   echo "kill "$i
   kill $i
@@ -37,5 +37,5 @@ done
 echo "sleep 3s"
 sleep 3
 
-java $JVM_OPTS -cp $classpath com.nsfocus.Application > /dev/null 2>&1 &
+java $JVM_OPTS -cp $classpath org.after90.Application > /dev/null 2>&1 &
 echo "dataService start success."

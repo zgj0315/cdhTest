@@ -1,2 +1,3 @@
 mvn clean package -Dmaven.test.skip=true
-scp -P 10022 target/dataServiceIDC-1.0.jar.original nti_java@10.200.1.86:/home/nti_java/dataServiceIDC/lib/dataServiceIDC-1.0.jar
+#scp target/cdhTest-1.0.jar.original zhaogj@172.0.0.101:/home/zhaogj/cdhTest/lib/cdhTest-1.0.jar
+scp target/cdhTest-1.0.jar zhaogj@172.0.0.21:/home/zhaogj/cdhTest/tmp/cdhTest-1.0.jar
