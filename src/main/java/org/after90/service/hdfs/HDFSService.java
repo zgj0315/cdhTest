@@ -1,34 +1,30 @@
 package org.after90.service.hdfs;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
+import org.after90.repository.HadoopRepository;
 import org.apache.hadoop.fs.Path;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
 @Slf4j
 public class HDFSService {
+    @Autowired
+    private HadoopRepository hadoop;
 
     public void writeHDFS() {
         log.info("begin write");
-        String strHadoopConfPath = "/etc/hadoop/conf/";
-        Configuration conf = new Configuration();
-        conf.addResource(new Path(strHadoopConfPath + "core-site.xml"));
-        conf.addResource(new Path(strHadoopConfPath + "hdfs-site.xml"));
-        log.info("conf is ok");
-        FileSystem fs = null;
-        try {
-            fs = FileSystem.get(conf);
-            log.info("fs is ok");
-
-            if (fs != null) {
-                fs.close();
-                log.info("fs is close");
+        log.info("mark:{}", hadoop.strMark);
+        if (hadoop.fs != null) {
+            try {
+                log.info("abc is file:{}", hadoop.fs.isFile(new Path("hdfs:///user/zhaogj/abc.txt")));
+                hadoop.fs.copyFromLocalFile(false, new Path("file:///home/zhaogj/cdhTest/tmp/abc.txt"), new Path("hdfs:///user/zhaogj/abc.txt"));
+            } catch (Exception e) {
+                log.error("", e);
             }
-        } catch (Exception e) {
-            log.error("", e);
+        } else {
+            log.info("fs is null");
         }
         log.info("end write");
     }

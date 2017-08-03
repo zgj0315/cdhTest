@@ -1,6 +1,7 @@
 package org.after90.component;
 
 import lombok.extern.slf4j.Slf4j;
+import org.after90.repository.HadoopRepository;
 import org.after90.service.hdfs.HDFSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,10 +17,11 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class StartRunnerComponent implements CommandLineRunner {
 
-
     @Value("${JUnit_Testing}")
     private int nJUnitTesting;
 
+    @Autowired
+    private HadoopRepository hadoop;
     @Autowired
     private HDFSService hdfs;
 
@@ -28,7 +30,7 @@ public class StartRunnerComponent implements CommandLineRunner {
         log.info("StartRunnerComponent is run");
         log.info("totalMemory:{}M", Runtime.getRuntime().totalMemory() / 1024 / 1024);
         if (nJUnitTesting == 0) {
-            //初始化ES连接信息
+            hadoop.initFS();
             hdfs.writeHDFS();
         }
     }
