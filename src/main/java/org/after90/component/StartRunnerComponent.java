@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
  * Created by zhaogj on 16/02/2017.
  */
 @Component
-@Order(value = 1)
 @Slf4j
+@Order(value = 1)
 public class StartRunnerComponent implements CommandLineRunner {
 
     @Value("${JUnit_Testing}")
@@ -30,8 +30,11 @@ public class StartRunnerComponent implements CommandLineRunner {
         log.info("StartRunnerComponent is run");
         log.info("totalMemory:{}M", Runtime.getRuntime().totalMemory() / 1024 / 1024);
         if (nJUnitTesting == 0) {
+            log.info("This is not test.");
             hadoop.initFS();
             hdfs.writeHDFS();
+        } else {
+            log.info("This is test.");
         }
     }
 }

@@ -10,14 +10,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Slf4j
 public class HadoopRepository {
-    public FileSystem fs = null;
-    public String strMark = null;
+    public static FileSystem fs = null;
 
     @Value("${strHadoopConfPath}")
     private String strHadoopConfPath;
 
     public void initFS() {
-        strMark = "has value";
         log.info("strHadoopConfPath:{}", strHadoopConfPath);
         Configuration conf = new Configuration();
         conf.addResource(new Path(strHadoopConfPath + "core-site.xml"));

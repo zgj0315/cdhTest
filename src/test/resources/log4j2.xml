@@ -17,8 +17,6 @@
 						<DefaultRolloverStrategy max="9" />
 					</RollingFile>
 				</Route>
-				<Route ref="STDOUT" key="Audit" />
-				<Route ref="List" key="Service" />
 			</Routes>
 		</Routing>
 	</Appenders>

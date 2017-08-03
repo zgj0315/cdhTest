@@ -14,10 +14,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hadoop.version>2.6.0</hadoop.version>
         <java.version>1.7</java.version>
-        <hbase.version>1.2.0</hbase.version>
-        <cdh.version>cdh5.11.0</cdh.version>
     </properties>
 
     <parent>

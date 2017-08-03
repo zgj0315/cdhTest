@@ -15,7 +15,6 @@ public class HDFSService {
 
     public void writeHDFS() {
         log.info("begin write");
-        log.info("mark:{}", hadoop.strMark);
         if (hadoop.fs != null) {
             try {
                 log.info("abc is file:{}", hadoop.fs.isFile(new Path("hdfs:///user/zhaogj/abc.txt")));
