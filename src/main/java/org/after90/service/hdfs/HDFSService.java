@@ -2,6 +2,7 @@ package org.after90.service.hdfs;
 
 import lombok.extern.slf4j.Slf4j;
 import org.after90.repository.HadoopRepository;
+import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,31 @@ public class HDFSService {
             log.info("fs is null");
         }
         log.info("end write");
+    }
 
-
+    public void writeHDFSLineByLine() {
+        log.info("begin write");
+        Path pathHDFSFile = new Path("hdfs:///user/zhaogj/appendfile.txt");
+        if (hadoop.fs != null) {
+            OutputStream out = null;
+            String strLine = null;
+            try {
+                if (!hadoop.fs.exists(pathHDFSFile)) {
+                    out = hadoop.fs.create(pathHDFSFile);
+                    out.close();
+                }
+                out = hadoop.fs.append(pathHDFSFile);
+                while (true) {
+                    strLine = "this is a line, time:" + System.currentTimeMillis() + ", content:" + Math.random() + "\n";
+                    out.write(strLine.getBytes());
+                    //out.flush();
+                }
+            } catch (Exception e) {
+                log.error("", e);
+            }
+        } else {
+            log.info("fs is null");
+        }
+        log.info("end write");
     }
 }
