@@ -31,8 +31,8 @@ public class StartRunnerComponent implements CommandLineRunner {
         log.info("totalMemory:{}M", Runtime.getRuntime().totalMemory() / 1024 / 1024);
         if (nJUnitTesting == 0) {
             log.info("This is not test.");
-            hadoop.initFS();
-            hdfs.writeHDFS();
+//            hadoop.initFS();
+//            hdfs.writeHDFS();
         } else {
             log.info("This is test.");
         }
