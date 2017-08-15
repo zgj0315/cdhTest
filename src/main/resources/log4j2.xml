@@ -8,8 +8,8 @@
 		<Routing name="Routing">
 			<Routes pattern="$${sd:type}">
 				<Route>
-					<RollingFile name="RollingFile" fileName="./logs/logJava.txt"
-						filePattern="./logs/logJava-%i.txt.gz">
+					<RollingFile name="RollingFile" fileName="./log/logJava.txt"
+						filePattern="./log/logJava-%i.txt.gz">
 						<PatternLayout>
 							<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%p][%l]-%m%n</pattern>
 						</PatternLayout>
