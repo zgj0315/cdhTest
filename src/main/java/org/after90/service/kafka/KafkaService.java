@@ -2,6 +2,7 @@ package org.after90.service.kafka;
 
 import lombok.extern.slf4j.Slf4j;
 import org.after90.repository.KafkaRepository;
+import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -47,6 +48,21 @@ public class KafkaService {
             long lNow = System.currentTimeMillis();
             kafka.producer.send(new ProducerRecord<String, String>("topic_test", strKey + lNow, strValue + lNow));
             log.info("data to kafka, key:{}", strKey);
+        }
+    }
+
+    public void writeKafkaAuto() {
+        while (true) {
+            long lNow = System.currentTimeMillis();
+            String strKey = "this is key " + lNow;
+            String strValue = "this is value " + lNow;
+            try {
+                kafka.producer.send(new ProducerRecord<String, String>("topic_test", strKey, strValue));
+                log.info("input message:{}", lNow);
+                Thread.sleep(1000 * 3);
+            } catch (Exception e) {
+                log.error("", e);
+            }
         }
     }
 }

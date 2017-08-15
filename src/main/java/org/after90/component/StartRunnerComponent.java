@@ -1,8 +1,8 @@
 package org.after90.component;
 
 import lombok.extern.slf4j.Slf4j;
-import org.after90.repository.HadoopRepository;
-import org.after90.service.hdfs.HDFSService;
+import org.after90.repository.KafkaRepository;
+import org.after90.service.kafka.KafkaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -21,9 +21,9 @@ public class StartRunnerComponent implements CommandLineRunner {
     private int nJUnitTesting;
 
     @Autowired
-    private HadoopRepository hadoop;
+    private KafkaRepository kafka;
     @Autowired
-    private HDFSService hdfs;
+    private KafkaService kafkaService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -31,9 +31,8 @@ public class StartRunnerComponent implements CommandLineRunner {
         log.info("totalMemory:{}M", Runtime.getRuntime().totalMemory() / 1024 / 1024);
         if (nJUnitTesting == 0) {
             log.info("This is not test.");
-//            hadoop.initFS();
-//            hdfs.writeHDFS();
-//            hdfs.writeHDFSLineByLine();
+            kafka.initProducer();
+            kafkaService.writeKafkaAuto();
         } else {
             log.info("This is test.");
         }
