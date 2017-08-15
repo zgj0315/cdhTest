@@ -2,3 +2,5 @@
 /.idea/
 *.iml
 /logs/
+*.jar
+/publish/cdhTest-1.0

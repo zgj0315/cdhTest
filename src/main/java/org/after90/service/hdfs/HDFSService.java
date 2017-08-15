@@ -56,6 +56,7 @@ public class HDFSService {
                 while (true) {
                     strLine = "this is a line, time:" + System.currentTimeMillis() + ", content:" + Math.random() + "\n";
                     out.write(strLine.getBytes());
+
                     //out.flush();
                 }
             } catch (Exception e) {
