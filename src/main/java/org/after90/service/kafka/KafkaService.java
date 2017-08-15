@@ -65,4 +65,15 @@ public class KafkaService {
             }
         }
     }
+
+    public void readKafkaAuto() {
+        kafka.consumer.subscribe(Arrays.asList("topic_test"));
+        while (true) {
+            ConsumerRecords<String, String> records = kafka.consumer.poll(1000);
+            for (ConsumerRecord<String, String> record : records) {
+                log.info("offset = {}, key = {}, value = {}", record.offset(), record.key(), record.value());
+            }
+            kafka.consumer.commitSync();
+        }
+    }
 }

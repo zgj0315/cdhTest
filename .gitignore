@@ -5,3 +5,4 @@
 *.jar
 /publish/cdhTest-1.0
 /publish/kafkaProducerTest-1.0
+/publish/kafkaConsumerTest-1.0
