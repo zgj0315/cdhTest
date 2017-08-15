@@ -4,3 +4,4 @@
 /logs/
 *.jar
 /publish/cdhTest-1.0
+/publish/kafkaProducerTest-1.0
